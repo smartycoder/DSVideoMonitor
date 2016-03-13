@@ -11,3 +11,11 @@
 6. Run command: <code>chmod +x /usr/syno/etc/rc.d/S99dsvideomonitor.sh</code>
 7. Run command: <code>/usr/syno/etc/rc.d/S99dsvideomonitor.sh start</code>
 
+# Settings
+Modify <code>dsvideomonitor.py</code> and set your own settings.
+<p><code>video_folder = "/volume1/video/"</code></p>
+<p><code>patterns = ["*.avi", "*.mkv"]</code></p>
+<p><code>languages = ["slv", "eng"]</code></p>
+<p><code>run_indexer = True</code></p>
+<p><code>notifier = PushbulletClient()</code></p>
+<p><code>notifier.set_api_key("YOUR_KEY")</code></p>
