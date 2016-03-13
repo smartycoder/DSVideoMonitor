@@ -11,7 +11,8 @@
 4. Copy files to <code>/var/packages/dsvideomonitor/</code>:<br />
 <code>cp -r DSVideoMonitor-master/* /var/packages/dsvideomonitor/</code>
 5. Run setup: <code>python /var/packages/dsvideomonitor/setup.py install</code>
-6. Copy file <code>/var/packages/dsvideomonitor/S99dsvideomonitor.sh</code> to <code>/usr/syno/etc/rc.d/</code>
+6. Copy file <code>/var/packages/dsvideomonitor/S99dsvideomonitor.sh</code> to <code>/usr/syno/etc/rc.d/</code><br />
+<code>cp /var/packages/dsvideomonitor/S99dsvideomonitor.sh /usr/syno/etc/rc.d/</code>
 7. Run command: <code>chmod +x /usr/syno/etc/rc.d/S99dsvideomonitor.sh</code>
 8. Run command: <code>/usr/syno/etc/rc.d/S99dsvideomonitor.sh start</code>
 
