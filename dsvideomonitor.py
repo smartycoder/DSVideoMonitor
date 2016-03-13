@@ -14,7 +14,7 @@ from watchdoghandler import VideoFileHandler
 # YOU CAN CHANGE SETTINGS
 #
 video_folder = "/volume1/video/"
-patterns = ["*.avi", "*.mkv"]
+patterns = ["*.avi", "*.mkv", "*.mp4", "*.ogv"]
 languages = ["slv", "eng"]
 run_indexer = True  # run synology media indexer
 
@@ -98,9 +98,9 @@ class DSVideoMonitor(DaemonLite):
 #
 video_monitor = DSVideoMonitor("/var/run/dsvideomonitor.pid")
 
-if sys.argv[1] == "":
+if (len(sys.argv) < 2) or (sys.argv[1] == "start"):
     video_monitor.start()
-if sys.argv[1] == "stop":
+elif sys.argv[1] == "stop":
     video_monitor.stop()
 
 
