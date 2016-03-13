@@ -17,10 +17,10 @@
 8. Run command: <code>/usr/syno/etc/rc.d/S99dsvideomonitor.sh start</code>
 
 # Settings
-Modify <code>dsvideomonitor.py</code> and set your own settings.
-<code>video_folder = "/volume1/video/"</code>
-<code>patterns = ["*.avi", "*.mkv"]</code>
-<code>languages = ["slv", "eng"]</code>
-<code>run_indexer = True</code>
-<code>notifier = PushbulletClient()</code>
-<code>notifier.set_api_key("YOUR_KEY")</code>
+Modify <code>dsvideomonitor.py</code> and set your own settings.<br />
+<code>video_folder = "/volume1/video/"</code><br />
+<code>patterns = ["*.avi", "*.mkv"]</code><br />
+<code>languages = ["slv", "eng"]</code><br />
+<code>run_indexer = True</code><br />
+<code>notifier = PushbulletClient()</code><br />
+<code>notifier.set_api_key("YOUR_KEY")</code><br />
