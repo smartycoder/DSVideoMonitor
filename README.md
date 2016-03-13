@@ -18,9 +18,9 @@
 
 # Settings
 Modify <code>dsvideomonitor.py</code> and set your own settings.
-<p><code>video_folder = "/volume1/video/"</code></p>
-<p><code>patterns = ["*.avi", "*.mkv"]</code></p>
-<p><code>languages = ["slv", "eng"]</code></p>
-<p><code>run_indexer = True</code></p>
-<p><code>notifier = PushbulletClient()</code></p>
-<p><code>notifier.set_api_key("YOUR_KEY")</code></p>
+<code>video_folder = "/volume1/video/"</code>
+<code>patterns = ["*.avi", "*.mkv"]</code>
+<code>languages = ["slv", "eng"]</code>
+<code>run_indexer = True</code>
+<code>notifier = PushbulletClient()</code>
+<code>notifier.set_api_key("YOUR_KEY")</code>
