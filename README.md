@@ -1,6 +1,6 @@
 # DSVideoMonitor
 
-<b>File monitor, auto-indexer and subtitles downloader (using subliminal)</b> for Synology DiskStation NAS. Supports push notifications like <b>Pushover</b> and <b>Pushbullet</b>.
+<b>File monitor, auto-indexer and subtitles downloader</b> (using subliminal) for Synology DiskStation NAS. Supports push notifications like <b>Pushover</b> and <b>Pushbullet</b>.
 
 # Install
 1. Install Python (if you haven't already) from the DiskStation package manager.
