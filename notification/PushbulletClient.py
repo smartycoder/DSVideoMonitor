@@ -6,6 +6,9 @@ class PushbulletClient(PushNotificationClient):
 
     _client = None
 
+    def get_name(self):
+        return "Pushbullet"
+
     def set_api_key(self, api):
         try:
             self._client = PushBullet(api)

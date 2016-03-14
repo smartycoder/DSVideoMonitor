@@ -8,6 +8,10 @@ class PushNotificationClient():
     _logger = Logger
 
     @abstractmethod
+    def get_name(self):
+        return ""
+
+    @abstractmethod
     def set_api_key(self, api):
         self._api_key = api
 

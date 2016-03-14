@@ -54,7 +54,7 @@ def file_processed(src_file, indexed, subtitles):
 
     file_name = os.path.basename(src_file)
     if notifier:
-        logger.info("Sending pushbullet notification ...")
+        logger.info("Sending %s notification ..." % notifier.get_name())
         notifier.send_message(file_name, "Indexed: %s\nSubtitles: %s" % (indexed, subtitles))
 
     logger.info("File %s processed." % file_name)
@@ -62,7 +62,7 @@ def file_processed(src_file, indexed, subtitles):
 
 def error_processing(src_file, msg):
     if notifier:
-        logger.info("Sending pushbullet notification ...")
+        logger.info("Sending %s notification ..." % notifier.get_name())
         file_name = os.path.basename(src_file)
         notifier.send_message(file_name, "ERROR: " + msg)
 
