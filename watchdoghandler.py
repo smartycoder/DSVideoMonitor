@@ -17,8 +17,10 @@ class VideoFileHandler(PatternMatchingEventHandler):
         self._case_sensitive = case_sensitive
         self._logger = None
         self._languages = ["eng"]
+        self._modified_files = []
 
         self.run_indexer = False
+
 
         # events
         self.on_file_processed = Event()
@@ -92,6 +94,11 @@ class VideoFileHandler(PatternMatchingEventHandler):
 
     def on_moved(self, event):
         self.do_index(event, "-a")
+
+    def on_modified(self, event):
+        if event.src_path not in self._modified_files:
+            self._modified_files.append(event.src_path)
+            self.do_index(event, "-a")
 
 
 class Event:

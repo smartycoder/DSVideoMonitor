@@ -14,7 +14,7 @@ from watchdoghandler import VideoFileHandler
 # YOU CAN CHANGE SETTINGS
 #
 video_folder = "/volume1/video/"
-patterns = ["*.avi", "*.mkv", "*.mp4", "*.ogv"]
+patterns = ["*.avi", "*.mkv", "*.mp4"]
 languages = ["slv", "eng"]
 run_indexer = True  # run synology media indexer
 
@@ -48,10 +48,6 @@ ch.setLevel(logging.DEBUG)
 ch.setFormatter(formatter)
 logger.addHandler(ch)
 
-
-def shutdown(message, code):
-    logger.info('DSVideoMonitor is stopping')
-    logger.debug(message)
 
 
 def file_processed(src_file, indexed, subtitles):
