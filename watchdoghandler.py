@@ -37,6 +37,9 @@ class VideoFileHandler(PatternMatchingEventHandler):
 
     def do_index(self, full_path, event_type, args):
 
+        if "@eaDir" in full_path:
+            return
+
         subtitles_found = None
 
         try:
@@ -86,6 +89,10 @@ class VideoFileHandler(PatternMatchingEventHandler):
         self.do_index(event.src_path, event.event_type, "-a")
 
     def on_deleted(self, event):
+
+        if "@eaDir" in event.src_path:
+            return
+
         self._logger.info("Event: " + event.event_type)
         self._logger.info("Indexing file: " + event.src_path)
 
