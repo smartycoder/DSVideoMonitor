@@ -49,15 +49,15 @@ ch.setFormatter(formatter)
 logger.addHandler(ch)
 
 
-
 def file_processed(src_file, indexed, subtitles):
-
     file_name = os.path.basename(src_file)
     if notifier:
         logger.info("Sending %s notification ..." % notifier.get_name())
         notifier.send_message(file_name, "Indexed: %s\nSubtitles: %s" % (indexed, subtitles))
 
     logger.info("File %s processed." % file_name)
+    logger.info("Done.")
+    logger.info("")
 
 
 def error_processing(src_file, msg):
