@@ -57,7 +57,7 @@ def file_processed(src_file, indexed, subtitles):
 
     logger.info("File %s processed." % file_name)
     logger.info("Done.")
-    logger.info("")
+    logger.info("===========================================")
 
 
 def error_processing(src_file, msg):
