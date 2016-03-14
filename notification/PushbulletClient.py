@@ -18,4 +18,5 @@ class PushbulletClient(PushNotificationClient):
         except Exception as e:
             self._logger.exception(str(e))
 
-
+    def set_logger(self, logger):
+        pass
