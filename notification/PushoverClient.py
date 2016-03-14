@@ -3,6 +3,7 @@ from notification.PushNotificationClient import PushNotificationClient
 
 
 class PushoverClient(PushNotificationClient):
+
     _client = None
     _api_token = "aYBH7B28vQCKopoJXGCnwQ5NhPTG9w"
 
@@ -17,3 +18,6 @@ class PushoverClient(PushNotificationClient):
             self._client.send_message(title=title, message=msg)
         except Exception as e:
             self._logger.exception(str(e))
+
+    def set_logger(self, logger):
+        pass
