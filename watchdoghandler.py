@@ -17,14 +17,16 @@ class VideoFileHandler(PatternMatchingEventHandler):
         self._case_sensitive = case_sensitive
         self._logger = None
         self._languages = ["eng"]
-        self._processed_files = []
+        self._folder = None
 
         self.run_indexer = False
-
 
         # events
         self.on_file_processed = Event()
         self.on_error = Event()
+
+    def set_folder(self, folder):
+        self._folder = folder
 
     def set_logger(self, logger):
         self._logger = logger
@@ -32,25 +34,25 @@ class VideoFileHandler(PatternMatchingEventHandler):
     def set_languages(self, languages):
         self._languages = languages
 
-    def do_index(self, event, args):
+    def do_index(self, full_path, event_type, args):
 
         subtitles_found = None
 
         try:
-            self._logger.info("Event: " + event.event_type)
-            self._logger.info("Indexing file: " + event.src_path)
+            self._logger.info("Event: " + event_type)
+            self._logger.info("Indexing file: " + full_path)
 
             if self.run_indexer:
-                call(["synoindex", args, event.src_path])
+                call(["synoindex", args, full_path])
 
-            filename, file_extension = os.path.splitext(event.src_path)
+            filename, file_extension = os.path.splitext(full_path)
             if os.path.isfile(filename + ".srt"):
                 subtitles_found = "Existing"
                 self._logger.info("Subtitles already exists.")
 
             if not subtitles_found:
                 self._logger.info("Downloading subtitles ...")
-                videos = [scan_video(event.src_path)]
+                videos = {scan_video(full_path)}
 
                 for lng in self._languages:
                     if subtitles_found:
@@ -72,24 +74,18 @@ class VideoFileHandler(PatternMatchingEventHandler):
                             self._logger.warning("Subtitles not found for language code " + lng)
                             # self.subtitles_missing.fire(v)
 
-            self.on_file_processed.fire(event.src_path, self.run_indexer, subtitles_found)
+            self.on_file_processed.fire(full_path, self.run_indexer, subtitles_found)
 
         except Exception as e:
             self._logger.error(str(e))
-            self.on_error(event.src_path, str(e))
+            self.on_error(full_path, str(e))
 
     def on_created(self, event):
-        if event.src_path not in self._processed_files:
-            self._processed_files.append(event.src_path)
-
-        self.do_index(event, "-a")
+        self.do_index(event.src_path, event.event_type, "-a")
 
     def on_deleted(self, event):
         self._logger.info("Event: " + event.event_type)
         self._logger.info("Indexing file: " + event.src_path)
-
-        if event.src_path in self._processed_files:
-            self._processed_files.remove(event.src_path)
 
         if self.run_indexer:
             try:
@@ -99,15 +95,10 @@ class VideoFileHandler(PatternMatchingEventHandler):
                 self.on_error(event.src_path, str(e))
 
     def on_moved(self, event):
-        if event.src_path not in self._processed_files:
-            self._processed_files.append(event.src_path)
+        if self._folder in event.src_path:
+            self.on_deleted(event)
 
-        self.do_index(event, "-a")
-
-    def on_modified(self, event):
-        if event.src_path not in self._processed_files:
-            self._processed_files.append(event.src_path)
-            self.do_index(event, "-a")
+        self.do_index(event.dest_path, event.event_type, "-a")
 
 
 class Event:

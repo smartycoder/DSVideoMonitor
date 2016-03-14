@@ -80,6 +80,7 @@ class DSVideoMonitor(DaemonLite):
         event_handler.set_logger(logger)
         event_handler.set_languages(languages)
         event_handler.run_indexer = run_indexer
+        event_handler.set_folder(video_folder)
 
         # listen to events
         event_handler.on_file_processed += file_processed
