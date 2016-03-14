@@ -33,7 +33,7 @@ notifier.set_api_key("YOUR_KEY")
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.DEBUG)
 logger.propagate = False
-formatter = logging.Formatter("%(asctime)s - %(name)s - %(levelname)s - %(message)s")
+formatter = logging.Formatter("%(asctime)s - %(levelname)s - %(message)s")
 
 # file handler
 fh = logging.FileHandler("/var/log/dsvideomonitor.log", "a")
@@ -76,6 +76,9 @@ class DSVideoMonitor(DaemonLite):
     def run(self):
         logger.info("DSVideoMonitor started.")
         logger.info("Monitoring folder: %s" % video_folder)
+
+        if notifier:
+            notifier.set_logger(logger)
 
         event_handler = VideoFileHandler(patterns=patterns)
         event_handler.set_logger(logger)
